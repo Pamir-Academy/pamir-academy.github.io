@@ -1,0 +1,2 @@
+# pamir-academy.github.io
+:|
