@@ -5,11 +5,25 @@
   <title>bandai cha hau.</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="css/style.css" rel="stylesheet">
+  <link rel="icon" type="image/jpeg" what="webp" ref="./avatar.jpg">
 </head>
 
 <body>
   <h1 align="center"> banisake pachi matra public aru bela kita local ki private. :| </h1>
+  <script type="importmap">
+  {
+    "imports": {
+      "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+    }
+  }
+</script>
+
+  <script type="module">
+    import {io} from "socket.io-client";
+
+    const socket = io();
+  </script>
+  <script id="x" src="dist/js/main.js">alert("Welcome!!")</script>
 </body>
 
 </html>
