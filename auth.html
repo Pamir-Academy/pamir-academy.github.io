@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <button onclick="register()">Register</button>
+  <button onclick="login()">Login</button>
+
+
+  <!-- NOTE: Testing.. -->
+
+  <script type="module">
+    import {client} from 'https://unpkg.com/@passwordless-id/webauthn'
+
+    window.register = async function () {
+      console.log('Registering...')
+      let res = client.register('clients_username', 'aXYraWQraWlkK19fLi4uLi4=')
+      console.log(res)
+    }
+
+    window.login = async function () {
+      console.log('Authenticating...')
+      let res = client.authenticate([], 'aXYraWQraWlkK19fLi4uLi4=')
+      console.log(res)
+    }
+
+  </script>
+</body>
+
+</html>
