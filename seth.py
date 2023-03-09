@@ -1,20 +1,16 @@
 #!/usr/bin/env python3
 
 import json
-from hashlib import sha512
 from base64 import b64encode
-from random import randbytes  # for iv?=...
 from datetime import datetime, timedelta, timezone
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
-from fastapi.responses import JSONResponse, HTMLResponse, RedirectResponse, FileResponse
+from hashlib import sha512
+from random import randbytes  # for iv?=...
 
-from jwt import (
-    JWT,
-    jwk_from_dict,
-    jwk_from_pem,
-)
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.responses import (FileResponse, HTMLResponse, JSONResponse,
+                               RedirectResponse)
+from jwt import JWT, jwk_from_dict, jwk_from_pem
 from jwt.utils import get_int_from_datetime
-
 
 instance = JWT()
 
@@ -65,3 +61,8 @@ api = FastAPI()
 def app():
     # logic..[Thinking..]
     return RedirectResponse('/#home') # inject TS here.
+
+
+if __name__ == '__main__':
+    # REST: 55555 + ws: 2580
+    __import__('uvicorn').run(host='0.0.0.0', port=55555)
