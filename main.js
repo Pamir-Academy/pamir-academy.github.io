@@ -1,4 +1,4 @@
-const updateDOM(event) => {
+const updateDOM = (event) => {
   try {
 
     await event.Execute(); //ws::1
@@ -9,8 +9,12 @@ const updateDOM(event) => {
   }
 }
 
-socket.on("D@3ie", (event) => {
-  updateDOM()
+socket.on("DISPLAY", (event) => {
+  updateDOM(event);
+});
+
+socket.on("OAUTH", (event) => {
+  updateDOM(event);  // lib-PAM/MFA..
 });
 
 socket.io.on("error", (error) => {
