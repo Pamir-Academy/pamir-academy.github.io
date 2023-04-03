@@ -3,6 +3,8 @@
 PLATFORM="misskey";
 ORG="Pamir-Academy"; CC="np";
 INIT_CMD="pnpm run init";
+BACKEND_CMD="cd /home/$PLATFORM/$PLATFORM/packages/backend/ && pnpm run build";
+FRONTEND_CMD="cd /home/$PLATFORM/$PLATFORM/packages/frontend/ && pnpm run build";
 SERVICE_PATH="/etc/systemd/system/$PLATFORM.service";
 sudo corepack enable
 echo "[+] Creating user: $PLATFORM"
@@ -28,6 +30,11 @@ echo -e "\n\nIf you encounter 'any' catch { error: ' echo $ONERR_CMD ' }\n\n"
 sleep 2;
 if [ -d "/home/$PLATFORM/$PLATFORM" ]; then
   pex "$UPDATE_CMD"
+  echo "[+] Building backend !"
+  pex "$BACKEND_CMD"
+  echo "[+] Building frontend !!"
+  pex "$FRONTEND_CMD"
+  exit 0
 else
   pex "$INSTALL_CMD"
 fi
@@ -44,6 +51,11 @@ echo "$DB_CMD" | sudo -u postgres psql
 echo "[+] Init ~ [_DB] migration(s) !"
 pex "cd /home/$PLATFORM/$PLATFORM/ && $INIT_CMD"
 
+echo "[+] Building backend !"
+pex "$BACKEND_CMD"
+
+echo "[+] Building frontend !!"
+pex "$FRONTEND_CMD"
 
 echo "[+] Installing sysmted service of $PLATFORM !"
 echo -e "\n\n\n\n\n\n"
