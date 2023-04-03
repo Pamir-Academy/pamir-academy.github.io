@@ -3,8 +3,9 @@
 PLATFORM="misskey";
 ORG="Pamir-Academy"; CC="np";
 INIT_CMD="pnpm run init";
-BACKEND_CMD="cd /home/$PLATFORM/$PLATFORM/packages/backend/ && pnpm run build";
-FRONTEND_CMD="cd /home/$PLATFORM/$PLATFORM/packages/frontend/ && pnpm run build";
+SW_CMD="cd /home/$PLATFORM/$PLATFORM/packages/sw/ && yarn && build";
+BACKEND_CMD="cd /home/$PLATFORM/$PLATFORM/packages/backend/ && yarn && yarn build";
+FRONTEND_CMD="cd /home/$PLATFORM/$PLATFORM/packages/frontend/ && yarn && yarn build";
 SERVICE_PATH="/etc/systemd/system/$PLATFORM.service";
 sudo corepack enable
 echo "[+] Creating user: $PLATFORM"
