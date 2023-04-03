@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 PLATFORM="misskey";
+ORG="Pamir-Academy"; CC="np";
 INIT_CMD="pnpm run init";
 SERVICE_PATH="/etc/systemd/system/$PLATFORM.service";
 sudo corepack enable
@@ -20,7 +21,7 @@ function pex() {
 }
 
 echo "[+] Installing/Updating $PLATFORM !"
-INSTALL_CMD="git clone --recursive https://github.com/prof-xadk3/misskey.git && cd $PLATFORM && git checkout master && git submodule update --init && pnpm install --frozen-lockfile"
+INSTALL_CMD="git clone --recursive https://github.com/$ORG/$PLATFORM.$CC.git && cd $PLATFORM && git checkout master && git submodule update --init && pnpm install --frozen-lockfile"
 UPDATE_CMD="cd /home/$PLATFORM/$PLATFORM && git checkout master && git pull && git submodule update --init && NODE_ENV=production pnpm install --frozen-lockfile && NODE_ENV=production pnpm run build && pnpm run migrate"
 ONERR_CMD="cd /home/$PLATFORM/$PLATFORM && pnpm run clean-all && pnpm install"
 echo -e "\n\nIf you encounter 'any' catch { error: ' echo $ONERR_CMD ' }\n\n"
